@@ -53,6 +53,7 @@
         try {
             $status = 1;
             $role= 1;
+            $hashPassword = password_hash($userPassword, PASSWORD_DEFAULT);
             //préparation de la requête
             $reqUpdate = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur, statut_utilisateur, id_roles) VALUES
             (?, ?, ?, ?, ?, ?, ?)');
@@ -61,7 +62,7 @@
             $reqUpdate->bindParam(1, $userLastName, PDO::PARAM_STR); 
             $reqUpdate->bindParam(2, $userFirstName, PDO::PARAM_STR);
             $reqUpdate->bindParam(3, $userMail, PDO::PARAM_STR);
-            $reqUpdate->bindParam(4, $userPassword, PDO::PARAM_STR);
+            $reqUpdate->bindParam(4, $hashPassword, PDO::PARAM_STR);
             $reqUpdate->bindParam(5, $userImage, PDO::PARAM_STR);
             $reqUpdate->bindParam(6, $status, PDO::PARAM_STR);
             $reqUpdate->bindParam(7, $role, PDO::PARAM_INT);

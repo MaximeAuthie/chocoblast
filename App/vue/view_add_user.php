@@ -39,6 +39,7 @@
 </body>
 </html>
 
+<!-- partie gestion des messages d'erreur-->
 <?php
     if (isset($_GET['success'])) {
         echo '<div class="alert alert-success w-50 mx-auto mt-3 text-center" role="alert">Votre compte a bien été créé</div>';
