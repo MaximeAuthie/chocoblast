@@ -44,7 +44,7 @@
                 <label for="image_utilisateur" class="form-label">Image de profil :</label>
                 <input type="file" class="form-control" id="image_utilisateur" name="image_utilisateur">
             </div>
-            <div class="text-center mt-5 mb-5"><button type="submit" class="btn btn-primary" name="submit_register">S'inscrire</button></div>
+            <div class="text-center mt-5 mb-5"><button type="submit" class="btn btn-primary shadow-lg" name="submit_register">S'inscrire</button></div>
         </form>
     </div>
     <script src="../../Public/asset/script/script.js" defer></script>
