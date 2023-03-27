@@ -55,11 +55,10 @@
 
 <!-- partie gestion des messages d'erreur-->
 <?php
-    if (isset($_GET['success'])) {
-        echo '<div class="alert alert-success w-50 mx-auto mt-3 text-center" role="alert">Votre compte a bien été créé</div>';
-    }
     if (isset($_GET['error'])) { //essayer de faire un switch
-  
+        if ($_GET['error'] == 0) {
+            echo '<br><div class="alert alert-success w-50 mx-auto mt-3 text-center" role="alert">Votre compte a bien été créé</div>';
+        }
         if ($_GET['error'] == 1) {
             echo '<br><div class="alert alert-danger w-50 mx-auto text-center" role="alert">L\'adresse mail saisie est déjà utilisée par un autre compte</div>';
         }
