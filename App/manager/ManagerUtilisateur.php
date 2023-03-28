@@ -1,6 +1,6 @@
 <?php
-include '../model/utilisateur.php';
-include '../utils/connectBdd.php';
+// include '../model/utilisateur.php';
+// include '../utils/connectBdd.php';
 
 class ManagerUtilisateur extends Utilisateur {
 
@@ -26,18 +26,26 @@ class ManagerUtilisateur extends Utilisateur {
     public function insertUser() {
         try {
             $bdd = BddConnect::connexion();
+            $nom = $this->getNomUtilisateur();
+            $prenom = $this->getPrenomUtilisateur();
+            $mail = $this->getMailUtilisateur();
+            $password = $this->getpasswordUtilisateur();
+            $image = $this->getImageUtilisateur();
+            $statut = $this->getStatutUtilisateur();
+            $role = $this->getRoleUtilisateur();
+
             //préparation de la requête
             $req = $bdd->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur, image_utilisateur, statut_utilisateur, id_roles) VALUES
             (?, ?, ?, ?, ?, ?, ?)');
 
             //Affection des variables
-            $req->bindParam(1, $this->getNomUtilisateur(), PDO::PARAM_STR); 
-            $req->bindParam(2, $this->getPrenomUtilisateur(), PDO::PARAM_STR);
-            $req->bindParam(3, $this->getMailUtilisateur(), PDO::PARAM_STR);
-            $req->bindParam(4, $this->getpasswordUtilisateur(), PDO::PARAM_STR);
-            $req->bindParam(5, $this->getImageUtilisateur(), PDO::PARAM_STR);
-            $req->bindParam(6, $this->getStatutUtilisateur(), PDO::PARAM_STR);
-            $req->bindParam(7, $this->getRoleUtilisateur(), PDO::PARAM_INT);
+            $req->bindParam(1, $nom, PDO::PARAM_STR); 
+            $req->bindParam(2, $prenom, PDO::PARAM_STR);
+            $req->bindParam(3, $mail, PDO::PARAM_STR);
+            $req->bindParam(4, $password, PDO::PARAM_STR);
+            $req->bindParam(5, $image, PDO::PARAM_STR);
+            $req->bindParam(6, $statut, PDO::PARAM_STR);
+            $req->bindParam(7, $role, PDO::PARAM_INT);
 
             //Execution de la requête
             $req->execute();
