@@ -29,6 +29,10 @@
             include './App/controler/controlerAddUser.php';
             break ;
         
+        case $path === "/chocoblast/deconnexion":
+            include './App/controler/controlerLogOut.php';
+            break ;
+
         default:
             include './App/controler/controler404.php';
     }

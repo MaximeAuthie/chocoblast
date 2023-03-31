@@ -3,9 +3,11 @@
     include './App/model/utilisateur.php';
     include './App/manager/ManagerUtilisateur.php';
 
-    //Initialisation variable $message
-
+    //Déclarations des variables qui interagissent avec les vues
     $message = '';
+    $navbar='';
+    $deconnexion='';
+
     $navbar = ' <li class="nav-item">
                     <a class="nav-link" href="accueil">Accueil</a>
                 </li>
@@ -92,6 +94,6 @@
         }
     }
 
-    // include '../vue/header.php';
+    include './App/vue/header.php';
     include './App/vue/view_add_user.php';
 ?>

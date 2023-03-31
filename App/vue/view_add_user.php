@@ -1,4 +1,4 @@
-<!-- partie affichage HTML -->
+<!-- partie affichage HTML
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
 
     <div class="w-50 mx-auto mt-5 p-3 bg-body rounded shadow-lg">
         <h1 class="text-center .w-50 mt-4 mb-4 ">Inscription</h1>
