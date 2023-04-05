@@ -1,1 +1,8 @@
 /Public/asset/image/
+envVisiteur.php
+envUtilisateur.php
+envAdmin.php
+*.jpg
+*.jpeg
+*.png
+*.pdf
