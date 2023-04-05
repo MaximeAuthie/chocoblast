@@ -1,78 +1,80 @@
 <?php
     class Utilisateur {
-        private $id_utilisateur;
-        private $nom_utilisateur;
-        private $prenom_utilisateur;
-        private $mail_utilisateur;
-        private $password_utilisateur;
-        private $image_utilisateur;
-        private $statut_utilisateur = false;
-        private $role_utilisateur = 1;
+        private ?int $id_utilisateur;
+        private ?string $nom_utilisateur;
+        private ?string $prenom_utilisateur;
+        private ?string $mail_utilisateur;
+        private ?string $password_utilisateur;
+        private ?string $image_utilisateur;
+        private ?bool $statut_utilisateur = false;
+        private ?Roles $role_utilisateur;
 
         public function __construct( $nom_utilisateur, $prenom_utilisateur, $mail_utilisateur, $password_utilisateur) {
             $this->nom_utilisateur = $nom_utilisateur;
             $this->prenom_utilisateur = $prenom_utilisateur;
             $this->mail_utilisateur = $mail_utilisateur;
             $this->password_utilisateur = $password_utilisateur;
+            $this->role_utilisateur = new Roles(null);
+            $this->role_utilisateur->setIdRole(1);
         }
 
-        public function getIdUtilisateur() {
+        public function getIdUtilisateur():int {
             return $this->id_utilisateur;
         }
 
-        public function getNomUtilisateur() {
+        public function getNomUtilisateur():string {
             return $this->nom_utilisateur;
         }
 
-        public function getPrenomUtilisateur() {
+        public function getPrenomUtilisateur():string {
             return $this->prenom_utilisateur;
         }
 
-        public function getMailUtilisateur() {
+        public function getMailUtilisateur():string {
             return $this->mail_utilisateur;
         }
 
-        public function getpasswordUtilisateur() {
+        public function getpasswordUtilisateur():string {
             return $this->password_utilisateur;
         }
 
-        public function getImageUtilisateur() {
+        public function getImageUtilisateur():string {
             return $this->image_utilisateur;
         }
 
-        public function getStatutUtilisateur() {
+        public function getStatutUtilisateur():bool {
             return $this->statut_utilisateur;
         }
 
-        public function getRoleUtilisateur() {
+        public function getRoleUtilisateur():Roles {
             return $this->role_utilisateur;
         }
         
-        public function setNomUtilisateur($nom_utilisateur) {
+        public function setNomUtilisateur(?string $nom_utilisateur):void {
             $this->nom_utilisateur = $nom_utilisateur;
         }
 
-        public function setPrenomUtilisateur($prenom_utilisateur) {
+        public function setPrenomUtilisateur(?string $prenom_utilisateur):void {
             $this->prenom_utilisateur = $prenom_utilisateur;
         }
 
-        public function setMailUtilisateur($mail_utilisateur) {
+        public function setMailUtilisateur(?string $mail_utilisateur):void {
             $this->mail_utilisateur = $mail_utilisateur;
         }
 
-        public function setpasswordUtilisateur($password_utilisateur) {
+        public function setpasswordUtilisateur(?string $password_utilisateur):void {
             $this->password_utilisateur = $password_utilisateur;
         }
 
-        public function setImageUtilisateur($image_utilisateur) {
+        public function setImageUtilisateur(?string $image_utilisateur):void {
             $this->image_utilisateur = $image_utilisateur;
         }
 
-        public function setStatutUtilisateur($statut_utilisateur) {
+        public function setStatutUtilisateur(?bool $statut_utilisateur):void {
             $this->statut_utilisateur = $statut_utilisateur;
         }
 
-        public function setRoleUtilisateur($role_utilisateur) {
+        public function setRoleUtilisateur(?Roles $role_utilisateur):void {
             $this->role_utilisateur = $role_utilisateur;
         }
     }
