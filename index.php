@@ -1,7 +1,19 @@
 <?php
-    //connexion des utils qui seront repris dans tous les controlers
+    //connexion des utils, model, manager qui seront repris dans tous les controlers
     include './App/utils/connectBdd.php';
     include './App/utils/toolbox.php';
+    include './App/model/roles.php';
+    include './App/model/utilisateur.php';
+    include './App/model/chocoblast.php';
+    include './App/model/commentaire.php';
+    include './App/manager/ManagerUtilisateur.php';
+    // include './App/api/ApiUtilisateur.php';
+
+    // Initialisation de la super globale SESSION pour toutes les pages
+    session_start();
+
+    //Création d'une nouvelle instance de l'API
+    // $api = new ApiUtilisateur();
 
     //! Tous les liens de toutes les vues et de tous controler doivent être renseignés du point de vue du router (index.php)
 
@@ -32,7 +44,10 @@
         case $path === "/chocoblast/deconnexion":
             include './App/controler/controlerLogOut.php';
             break ;
-
+        
+        case $path === "/chocoblast/userAdd":
+            $api->addUser();
+            
         default:
             include './App/controler/controler404.php';
     }

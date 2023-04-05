@@ -1,16 +1,11 @@
 <?php
-    //import autres pages
-    include './App/model/utilisateur.php';
-    include './App/manager/ManagerUtilisateur.php';
-
-    session_start();
 
     //Déclarations des variables qui interagissent avec les vues
     $message = '';
     $navbar='';
     $deconnexion = '';
 
-    if (!empty($_SESSION['id_utilisateur'])) {
+    if (isset($_SESSION['connected'])) { //! Toujours tester les variable super globale avec isset, sinon ça renvoie une erreur
         $navbar =   '<li class="nav-item">
                         <a class="nav-link" href="accueil">Accueil</a>
                     </li>
@@ -32,7 +27,7 @@
                     </li>';
     }
 
-    if (!empty($_SESSION['id_utilisateur'])) {
+    if (isset($_SESSION['connected'])) { //! Toujours tester les variable super globale avec isset, sinon ça renvoie une erreur
         $deconnexion = '<a href="deconnexion">
                             <button type="submit" class="btn btn-link" name="submit_log_out">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -47,15 +42,15 @@
     //Si le formulaire de connexion est soumis
     if (isset($_POST['submit_sign_in'])) { //On vérifie si le formulaire a été soumis
 
+        // Netoyage des données
+        $mail = ToolBox::nettoyerDonnees($_POST['mail_utilisateur']);
+        $inputPassword = ToolBox::nettoyerDonnees($_POST['password_utilisateur']);
+
         if (!empty($_POST['mail_utilisateur'] && !empty($_POST['password_utilisateur']))) { //On vérifie que tous les champs soient bien complets
             
             if (filter_var($_POST['mail_utilisateur'], FILTER_VALIDATE_EMAIL)) { //On vérifie le format de l'adresse mail
                
-                // Netoyage des données
-                $mail = ToolBox::nettoyerDonnees($_POST['mail_utilisateur']);
-                $inputPassword = ToolBox::nettoyerDonnees($_POST['password_utilisateur']);
-
-                // Création de l'instance de ManagerUtilisateur et récupération du résultat de la requête
+                // Création de l'instance de ManagerUtilisateur et récupération du résultat de la requête //! Ici setter les attribut sur l'objet $this
                 $nouvelUtilisateur = new ManagerUtilisateur('','',$mail,$inputPassword);
                 $userData = $nouvelUtilisateur->getUserByMail();
 
@@ -64,7 +59,8 @@
                     $returnFirstName = $userData[0]["prenom_utilisateur"];
 
                     //Si le MDP est correct, on stocke les données utilisateur dans la super globale SESSION
-                    if (password_verify($inputPassword,$returnPassword)) { 
+                    if (password_verify($inputPassword,$returnPassword)) {
+                        $_SESSION['connected'] = true;
                         $_SESSION['id_utilisateur'] = $userData[0]["id_utilisateur"];
                         $_SESSION['prenom_utilisateur'] = $userData[0]["prenom_utilisateur"];
                         $_SESSION['nom_utilisateur'] = $userData[0]["nom_utilisateur"];
@@ -72,7 +68,15 @@
                         $_SESSION['image_utilisateur'] = $userData[0]["image_utilisateur"];
                         $_SESSION['statut_utilisateur'] = $userData[0]["statut_utilisateur"];
                         $_SESSION['role_utilisateur'] = $userData[0]["id_roles"];
+
                         $message = ToolBox::definirMessage(8, $returnFirstName);
+                        $navbar =   '<li class="nav-item">
+                                        <a class="nav-link" href="accueil">Accueil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="chocoblast">Chocoblast</a>
+                                    </li>';
+                                    
                     } else {
                         $message = ToolBox::definirMessage(7,''); //Adresse mail ou MDP incorrect
                    }

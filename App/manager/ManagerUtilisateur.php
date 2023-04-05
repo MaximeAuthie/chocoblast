@@ -1,6 +1,5 @@
 <?php
-
-    class ManagerUtilisateur extends Utilisateur {
+class ManagerUtilisateur extends Utilisateur {
 
         public function getUserByMail() {
             try {

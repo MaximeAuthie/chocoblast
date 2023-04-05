@@ -1,16 +1,11 @@
 <?php
-    //import autres pages
-    include './App/model/utilisateur.php';
-    include './App/manager/ManagerUtilisateur.php';
-
-    session_start();
 
     //Déclarations des variables qui interagissent avec les vues
     $message = '';
     $navbar='';
     $deconnexion='';
 
-    if (!empty($_SESSION['id_utilisateur'])) {
+    if (isset($_SESSION['id_utilisateur'])) { //! Toujours tester les variable super globale avec isset, sinon ça renvoie une erreur
         $navbar =   '<li class="nav-item">
                         <a class="nav-link" href="accueil">Accueil</a>
                     </li>
@@ -32,7 +27,7 @@
                     </li>';
     }
 
-    if (!empty($_SESSION['id_utilisateur'])) {
+    if (isset($_SESSION['id_utilisateur'])) { //! Toujours tester les variable super globale avec isset, sinon ça renvoie une erreur
         $deconnexion = '<a href="deconnexion">
                             <button type="submit" class="btn btn-link" name="submit_log_out">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">

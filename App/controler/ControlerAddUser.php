@@ -1,8 +1,4 @@
 <?php
-    //import autres pages
-    include './App/model/utilisateur.php';
-    include './App/manager/ManagerUtilisateur.php';
-
     //Déclarations des variables qui interagissent avec les vues
     $message = '';
     $navbar='';
